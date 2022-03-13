@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="container">
+        <h1>What chat room would you like to enter?</h1>
+        <input id="roomname" type="text" size="100"><br><br>
+        <input id="submit" type="button" value="Enter">
+    </div>
+
+    <!-- Script for retrieving the room code from the input above
+    and to redirect to the room page -->
+    <script>
+        document.querySelector('#submit').onclick = function(e) {
+            var myRoom = document.querySelector('#roomname').value;
+            window.location.pathname = '/chat/' + myRoom + '/';
+        };
+    </script>
+</body>
+</html>

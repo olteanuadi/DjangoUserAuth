@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: dancro1122@gmail.com
+Date: Sun, 30 Jan 2022 06:22:13 -0000
+Message-ID: <164352373319.6620.12900167716093695348@DESKTOP-U9UCD45>
+
+Someone asked for password reset for email dancro1122@gmail.com.Follow the Link below
+http://127.0.0.1:8000{% url "authapp:password_reset_confirm"
+uidb64=uid token=token %}
+-------------------------------------------------------------------------------

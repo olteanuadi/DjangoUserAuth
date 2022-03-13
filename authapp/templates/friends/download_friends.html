@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% comment %} TODO: Fix download button {% endcomment %}
+    {% load static %}
+    <a href="{% static 'friends8.csv' %}" download="Friends.csv">
+        <button type="button">Download</button>
+        </a>
+    {% comment %} TODO: Add javascript for download {% endcomment %}
+
+{% endblock %}

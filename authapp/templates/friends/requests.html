@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if friend_requests_list %}
+<h2 style="padding: 0 0 10px 40px;">Incoming friend requests.</h2>
+{% endif %}
+{% for user in friend_requests_list %}
+<div class="container" style="display: flex; align-items:center; padding-top: 10px;">
+    <h1>{{ user.username }}</h1>
+    <a href="accept{{ user.id }}" style="float:right; padding-left: 40vmax;">Accept Friend Request.</a>
+</div>
+{% endfor %}
+<br><br>
+{% if friends_list %}
+<h2 style="padding: 0 0 10px 40px;">Friends :</h2>
+{% endif %}
+{% for user in friends_list %}
+<h1>{{ user.username }}</h1>
+{% endfor %}
+
+{% endblock content %}

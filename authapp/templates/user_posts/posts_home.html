@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block title %}Posts{% endblock title %}
+
+{% block content %}
+
+{% for post is latest_posts %}
+    <!-- <li><a href="{% url 'authapp:' %}">{{ post.post_text }}</a></li> -->
+
+{% endblock content %}

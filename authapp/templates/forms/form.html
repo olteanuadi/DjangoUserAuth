@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'authapp:register_user_from_form' %}" method="post">
+
+        {% csrf_token %}
+        <label for="user_name">Username</label>
+        <input id="user_name" name="user_name" type="text"><br>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"><br>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input id="confirm_password" name="confirm_password" type="password"><br>
+
+        <label for="code">Code</label>
+        <input id="code" name="code" type="text">
+
+        <button><input type="submit" value="Register"></button>
+
+    </form>
+
+{% endblock content %}

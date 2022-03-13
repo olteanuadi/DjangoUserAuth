@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h5>Chats Log</h5>
+        <textarea id="log" cols="100" rows="20"></textarea><br>
+        <h5>Enter your chats here</h5>
+        <input id="mssg" type="text" size="100" placeholder="Your message goes here:"><br><br>
+        <input id="submit" type="button" value="Send">
+    </div>
+    {{ room_name|json_script:"roomname" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById("roomname").textContent);
+        console.log(roomName);
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#log'.value) += (data.message + '\n');
+        };
+        
+        chatSocket.onclose = function(e) {
+            console.error('OOOPS! Chat closed.')
+        }
+        document.querySelector('#submit').onclick = function(e) {
+            console.log("Is it pressed");
+            const messageDom = document.querySelector('#mssg');
+            console.log(messageDom.value)
+            const message = messageDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            message = '';
+        };
+    </script>
+</body>
+</html>

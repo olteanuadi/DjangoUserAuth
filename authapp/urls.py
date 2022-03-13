@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import edit, dashboard, register
+from .views import *
 from django.urls import reverse_lazy
 from django.contrib.auth.views import (LoginView, LogoutView, PasswordResetDoneView, PasswordResetView,
                                        PasswordResetCompleteView, PasswordResetConfirmView,
@@ -29,5 +29,12 @@ urlpatterns = [
         success_url=reverse_lazy('authapp:login')), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(
         template_name='authapp/password_reset_complete.html'), name='password_reset_complete'),
-
+    path('all_users/', show_all_users, name='all_users'),
+    path('all_users/<int:from_user_id>-<int:user_id>/', send_friend_request, name='friend_request_sent'),
+    path('all_users/frs/', show_friend_requests, name='friend_requests'),
+    path('all_users/frs/accept<int:sender_id>/', accept_friend_request, name='friend_requests'),
+    path('all_users/qr/', QrFriendsList.as_view(), name="qr_friends_list"),
+    path('all_users/download/', DownloadFriendsList.as_view(), name="download_friends_list"),
+    path('forms/register/', Register_User.as_view(), name='register_user_from_form'),
+    path('forms/', TemplateView.as_view(template_name='forms/form.html'), name='render_register_template'),
 ]

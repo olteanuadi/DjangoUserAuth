@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for user_reg in userregistrationmodels %}
+    {% if user.is_authenticated %}
+        <h1 style="padding-bottom: 30px;">{{ user_reg.user.username }} 
+            <a href="/all_users/{{ request.user.id }}-{{ user_reg.user.id }}" style="padding-left: 10em">Add friend.</a>
+        </h1>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

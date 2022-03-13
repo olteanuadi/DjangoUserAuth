@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'authapp',
-    'bootstrap4'
+    'chatapp',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +74,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'src.wsgi.application'
+WSGI_APPLICATION = "src.asgi.application"
+
+ASGI_APPLICATION = "src.asgi.application"
 
 
 # Database
@@ -81,13 +85,14 @@ WSGI_APPLICATION = 'src.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -134,3 +139,11 @@ LOGOUT_URL = 'logout'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
